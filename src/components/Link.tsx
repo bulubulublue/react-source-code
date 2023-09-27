@@ -9,10 +9,14 @@ interface ILinkProp {
 export default function Link({ to, replace, children }: ILinkProp) {
   const historyPush = (path) => {
     window.history.pushState({}, "", path);
+    const navigationEvent = new PopStateEvent("navigate");
+    window.dispatchEvent(navigationEvent);
   };
 
   const historyReplace = (path) => {
     window.history.replaceState({}, "", path);
+    const navigationEvent = new PopStateEvent("navigate");
+    window.dispatchEvent(navigationEvent);
   };
 
   const handleClick = (e) => {

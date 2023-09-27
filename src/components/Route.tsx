@@ -7,19 +7,22 @@ interface IRouteProp {
 }
 
 export default function Route({ path, exact, component }: IRouteProp) {
-  const [currentPath, setCurrentPath] = useState("");
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
-  //todo 目前使用useState来触发页面的更新
-  const handleRouteChange = (e) => {
-    console.log("route", e);
-    // setCurrentPath(e)
-  };
-
-  // todo 是否需要添加该监听?listen if the url is changed throught back/forward
+  //是否需要添加该监听?listen if the url is changed throught back/forward
   useEffect(() => {
+    const handleRouteChange = (e) => {
+      console.log("trigger");
+      setCurrentPath(window.location.pathname);
+    };
+
+    window.addEventListener("navigate", handleRouteChange);
     window.addEventListener("popstate", handleRouteChange);
 
-    return window.removeEventListener("popstate", handleRouteChange);
+    return () => {
+      window.removeEventListener("navigate", handleRouteChange);
+      window.addEventListener("popstate", handleRouteChange);
+    };
   }, []);
 
   /*
