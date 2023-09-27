@@ -16,12 +16,11 @@ export default function Route({ path, exact, component }: IRouteProp) {
   };
 
   // todo 是否需要添加该监听?listen if the url is changed throught back/forward
-  // useEffect(() => {
-  //   window.addEventListener("popstate", handleRouteChange);
+  useEffect(() => {
+    window.addEventListener("popstate", handleRouteChange);
 
-  //   return window.removeEventListener("popstate", handleRouteChange);
-  // }, []);
-  //
+    return window.removeEventListener("popstate", handleRouteChange);
+  }, []);
 
   /*
     pathname: 当前地址栏的地址
