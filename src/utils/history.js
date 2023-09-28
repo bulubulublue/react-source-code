@@ -21,9 +21,30 @@ function createBrowserHistory() {
     pathname: "/",
   };
 
-  // 路由变化时的回调
+  // 使用push跳转路由
+  // ，第一个参数​​state​​​是往新路由传递的信息，可以为空，官方​​React-Router​​​会往里面加一个随机的​​key​​​和其他信息，我们这里直接为空吧，第二个参数​​title​​​目前大多数浏览器都不支持，可以直接给个空字符串，第三个参数​​url​​是可选的，是我们这里的关键，这个参数是要跳往的目标地址。
+  const push = function (url) {
+    const history = window.history;
+    // 这里pushState并不会触发popstate
+    // 但是我们仍然要这样做，是为了保持state栈的一致性
+    history.pushState(null, "", url);
+
+    // 由于push并不触发popstate，我们需要手动调用回调函数
+    location = { pathname: url };
+    listeners.call(location);
+  };
+
+  const replace = function (url) {
+    const history = window.history;
+    history.replaceState(null, "", url);
+
+    location = { pathname: url };
+    listeners.call(location);
+  };
+
+  // 前进/后退时回调
   const handlePop = function () {
-    console.log('123')
+    console.log("123");
     const currentLocation = {
       pathname: window.location.pathname,
     };
@@ -42,6 +63,8 @@ function createBrowserHistory() {
       return listeners.push(listener);
     },
     location,
+    push,
+    replace,
   };
 
   return history;
