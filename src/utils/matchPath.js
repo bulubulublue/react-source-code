@@ -1,4 +1,4 @@
-import pathToRegexp from "path-to-regexp";
+import {pathToRegexp} from "path-to-regexp";
 const cache = {};
 const cacheLimit = 10000;
 let cacheCount = 0;
@@ -37,6 +37,7 @@ function compilePath(path, options) {
  * options：定义Route组件时传入的参数
  */
 function matchPath(pathname, options = {}) {
+  // console.log(pathname,options)
   if (typeof options === "string" || Array.isArray(options)) {
     options = { path: options };
   }

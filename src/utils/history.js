@@ -23,6 +23,7 @@ function createBrowserHistory() {
 
   // 路由变化时的回调
   const handlePop = function () {
+    console.log('123')
     const currentLocation = {
       pathname: window.location.pathname,
     };

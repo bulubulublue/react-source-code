@@ -10,12 +10,14 @@ export default function Router({ history, children }) {
   const _isMounted = useRef(false);
   const _pendingLocation = useRef(null);
 
+  // 跟路由，/
   const computeRootMatch = (pathname) => {
     return { path: "/", url: "/", params: {}, isExact: pathname === "/" };
   };
 
   // 通过history监听路由变化，变化的时候，改变state上的location
   const unlisten = history.listen((location) => {
+    console.log(location)
     if (_isMounted.current) {
       setLocation({ location });
     } else {
