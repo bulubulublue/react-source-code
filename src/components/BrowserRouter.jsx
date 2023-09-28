@@ -1,4 +1,4 @@
-import { createBrowserHistory as createHistory } from "history";
+import { createBrowserHistory as createHistory } from "../utils/history";
 import Router from "./Router";
 
 export default function BrowserRouter(props) {
