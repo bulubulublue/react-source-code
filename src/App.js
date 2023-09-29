@@ -22,13 +22,12 @@ export default function App() {
             </li>
           </ul>
         </div>
-        {/* <Route path="/" exact component={Home} />
-        <Route path="/about" component={About} /> */}
         <Switch>
-        <Route path="/about" component={About} />
-        <Route path="/:user" component={Home} />
-        <Route component={() => <div>Not Found</div>} />
-      </Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/:user" component={Home} />
+          <Route component={() => <div>Not Found</div>} />
+        </Switch>
       </BrowserRouter>
     </div>
   );
