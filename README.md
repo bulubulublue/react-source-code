@@ -17,3 +17,6 @@
    使用 a 标签, 禁用 a 标签的默认跳转功能
    当点击 a 标签时，调用 window.history.pushState 或者 window.history.replaceState 方法，更新浏览器的路由
    触发 navigate 事件
+
+
+https://blog.51cto.com/u_15503053/5053698

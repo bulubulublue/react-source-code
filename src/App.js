@@ -25,7 +25,7 @@ export default function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/about" component={About} />
-          <Route path="/:user" component={Home} />
+          <Route path="/:user" component={()=><div>123</div>} />
           <Route component={() => <div>Not Found</div>} />
         </Switch>
       </BrowserRouter>
