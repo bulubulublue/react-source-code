@@ -15,21 +15,23 @@ export default function Router({ history, children }) {
     return { path: "/", url: "/", params: {}, isExact: pathname === "/" };
   };
 
-  // 通过history监听路由变化，变化的时候，改变state上的location
-  const unlisten = history.listen((location) => {
-    console.log(location)
-    if (_isMounted.current) {
-      setLocation({ location });
-    } else {
-      _pendingLocation.current = location;
-    }
-  });
+  
+
 
   useEffect(() => {
     _isMounted.current = true;
 
+    // 通过history监听路由变化，变化的时候，改变state上的location
+    const unlisten = history.listen((location) => {
+      if (_isMounted.current) {
+        setLocation( location );
+      } else {
+        _pendingLocation.current = location;
+      }
+    });
+
     if (_pendingLocation.current) {
-      this.setState({ location: _pendingLocation.current });
+      setLocation( _pendingLocation.current);
     }
 
     return () => {

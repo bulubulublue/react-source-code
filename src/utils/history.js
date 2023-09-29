@@ -42,9 +42,8 @@ function createBrowserHistory() {
     listeners.call(location);
   };
 
-  // 前进/后退时回调
+  // 前进/后退时回调(只有当路由是通过pushState或者replaceState跳转时，再点击前进后退才有效)
   const handlePop = function () {
-    console.log("123");
     const currentLocation = {
       pathname: window.location.pathname,
     };
