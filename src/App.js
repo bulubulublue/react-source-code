@@ -3,6 +3,7 @@ import Route from "./components/Route";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Link from "./components/Link";
+import Switch from "./components/Switch";
 
 export default function App() {
   return (
@@ -23,11 +24,11 @@ export default function App() {
         </div>
         {/* <Route path="/" exact component={Home} />
         <Route path="/about" component={About} /> */}
-        {/* <Switch> */}
+        <Switch>
         <Route path="/about" component={About} />
         <Route path="/:user" component={Home} />
         <Route component={() => <div>Not Found</div>} />
-      {/* </Switch> */}
+      </Switch>
       </BrowserRouter>
     </div>
   );

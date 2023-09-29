@@ -2,19 +2,22 @@ import React, { useContext } from "react";
 import RouterContext from "../context/RouterContext";
 import matchPath from "../utils/matchPath";
 
-export default function Route({
-  component,
-  path,
-  exact = false,
-  strict = false,
-  sensitive = false,
-}) {
+export default function Route(props) {
   // history: createHistory生成的对象
   // location: 当前浏览器url信息
   const routerContext = useContext(RouterContext);
+  const {
+    computedMatch, // 在switch组件中匹配的路由，如果和当前浏览器url相匹配，则是一个对象，否则为空
+    component,
+    path,
+    exact = false,
+    strict = false,
+    sensitive = false,
+  } = props
+
 
   const location = routerContext.location;
-  const match = matchPath(location.pathname, {
+  const match = computedMatch || matchPath(location.pathname, {
     path,
     exact,
     strict,
